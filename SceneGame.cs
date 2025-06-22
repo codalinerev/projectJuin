@@ -18,6 +18,7 @@ public class SceneGame : Scene
     int length = gameController.GetSnakeLength();
     int shoots = gameController.GetShoots();
     int pauses = gameController.GetPauses();
+    public string lastApple = "Normal";
 
     Timer timer;
     Timer gameOverTimer;
@@ -54,17 +55,13 @@ public class SceneGame : Scene
         snake.Draw();
         apple.Draw();
         score.Draw();
-        Raylib.DrawRectangleLines(200, 200, 100, 50, Color.Black);
-        Raylib.DrawText("apple is at " + apple.coordinates, 200, 200, 20, Color.Red);
-        Raylib.DrawText("snake is at " + snake.Head, 200, 230, 20, Color.Blue);
+        Raylib.DrawRectangleLines(1010, 200, 100, 50, Color.Black);
+        //Raylib.DrawText("apple is at " + apple.coordinates, 1010, 200, 20, Color.Red);
+        //Raylib.DrawText("snake is at " + snake.Head, 1010, 240, 20, Color.Blue);
         Raylib.DrawText($"Apples Eaten : {apples}", 1010, 300, 15, Color.Black);
-        Raylib.DrawText($"Shoots : {shoots} :", 1010, 350, 15, Color.Black);
+        //Raylib.DrawText($"Shoots : {shoots} :", 1010, 350, 15, Color.Black);
         Raylib.DrawText($"Pauses : {pauses}", 1010, 400, 15, Color.Black);
         Raylib.DrawText($"Apples Eaten :", 1010, 300, 15, Color.Black);
-
-     
-
-
 
         if (IsGameOver)
             Raylib.DrawText("GAMEOVER", 100, 100, 20, Color.Red);
@@ -92,10 +89,11 @@ public class SceneGame : Scene
         if (snake.IsCollidingWithApple(apple))
         {
             Console.WriteLine("Snake collided with apple at: " + apple.coordinates);
+            lastApple = apple.typeApple;
             if (apple.typeApple == "Crazy")
-            {
-                snake.timerFuzzy += Raylib.GetFrameTime();
-            }
+                snake.isFuzzy = true;
+            else snake.isFuzzy = false;
+                 
             apple.Respawn();
             apples++;
             snake.Grow();
