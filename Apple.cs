@@ -10,11 +10,9 @@ public class Apple
     private Grid grid;
     private bool surprise = false;
 
-    private string typeApple = "Normal";
+    public string typeApple = "Normal";
 
-    public static string[] typesApple =
-    {
-        "Normal", "Double", "Explosion", "Music", "Speed", "Slow", "Crazy", "Lose","Magic", "Color", "Surprise"};
+    public static string[] typesApple = { "Normal", "Crazy" };
 
     public Apple(Grid grid)
     {
@@ -25,13 +23,13 @@ public class Apple
     public string RandomType()
     {
         Random randomT = new Random();
-        int i = randomT.Next(11);
+        int i = randomT.Next(0,typesApple.Length);
         return typesApple[i];       
     } 
 
     public void Respawn()
     {
-        coordinates = Coordinates.Random(grid.columns, grid.rows);
+        coordinates = Coordinates.Random(grid.columns-1, grid.rows-1);
         typeApple = RandomType();       
     }
 
