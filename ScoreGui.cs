@@ -11,7 +11,7 @@ public class ScoreGui
     static IGameController gameController = Services.Get<IGameController>();
     public void Draw()
     {
-        Raylib.DrawText($"Score: {gameController.GetScore()}", 1010, 10, 20, Color.Green);
+        Raylib.DrawText($"Score: {gameController.GetScore()}", 1010, 10, 20, Color.DarkGreen);
         /*Raylib.DrawText($"Paused: {countPauses}", 1010, 80, 20, Color.Red);
         Raylib.DrawText($"Speed: {gameController.GetSpeed()}", 1010, 50, 20, Color.Blue);
         Raylib.DrawText($"Snake Length: {gameController.GetSnakeLength()}", 1010, 110, 20, Color.Purple);
