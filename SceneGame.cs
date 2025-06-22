@@ -44,6 +44,7 @@ public class SceneGame : Scene
     public override void Load()
     {
         grid.position = new Vector2(100, 100);
+      
 
     }
 
@@ -55,13 +56,15 @@ public class SceneGame : Scene
         snake.Draw();
         apple.Draw();
         score.Draw();
-        Raylib.DrawRectangleLines(1010, 200, 100, 50, Color.Black);
+        //Raylib.DrawRectangleLines(1010, 200, 100, 50, Color.Black);
+        Raylib.DrawText("press SPACE for pause", 1000, 200, 15, Color.Blue);
+        Raylib.DrawText("move snake with arrows", 1000, 100, 15, Color.DarkGreen);
         //Raylib.DrawText("apple is at " + apple.coordinates, 1010, 200, 20, Color.Red);
         //Raylib.DrawText("snake is at " + snake.Head, 1010, 240, 20, Color.Blue);
-        Raylib.DrawText($"Apples Eaten : {apples}", 1010, 300, 15, Color.Black);
+        //Raylib.DrawText($"Apples Eaten : {apples}", 1010, 300, 15, Color.Black);
         //Raylib.DrawText($"Shoots : {shoots} :", 1010, 350, 15, Color.Black);
         Raylib.DrawText($"Pauses : {pauses}", 1010, 400, 15, Color.Black);
-        Raylib.DrawText($"Apples Eaten :", 1010, 300, 15, Color.Black);
+        Raylib.DrawText($"Apples Eaten : {apples}", 1010, 300, 15, Color.Black);
 
         if (IsGameOver)
             Raylib.DrawText("GAMEOVER", 100, 100, 20, Color.Red);
