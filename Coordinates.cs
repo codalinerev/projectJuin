@@ -114,8 +114,8 @@ public struct Coordinates
     public static Coordinates Random( int maxColumn,  int maxRow)
     {
         Random random = new Random();
-        int column = random.Next(0,maxColumn + 1);
-        int row = random.Next(0,maxRow + 1);
+        int column = random.Next(0,maxColumn);
+        int row = random.Next(0,maxRow);
         return new Coordinates(column, row);
     }
 
