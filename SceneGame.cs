@@ -10,7 +10,7 @@ public class SceneGame : Scene
     Snake snake;
     Apple apple;
 
-   
+
 
     ScoreGui score = new ScoreGui();
     static IGameController gameController = Services.Get<IGameController>();
@@ -50,7 +50,7 @@ public class SceneGame : Scene
     {
         //base.Draw();
         grid.Draw();
-        grid.DrawMini();
+        //grid.DrawMini();
         snake.Draw();
         apple.Draw();
         score.Draw();
@@ -58,10 +58,13 @@ public class SceneGame : Scene
         Raylib.DrawText("apple is at " + apple.coordinates, 200, 200, 20, Color.Red);
         Raylib.DrawText("snake is at " + snake.Head, 200, 230, 20, Color.Blue);
         Raylib.DrawText($"Apples Eaten : {apples}", 1010, 300, 15, Color.Black);
-        Raylib.DrawText($"Shoots : { shoots} :", 1010, 350, 15, Color.Black);
+        Raylib.DrawText($"Shoots : {shoots} :", 1010, 350, 15, Color.Black);
         Raylib.DrawText($"Pauses : {pauses}", 1010, 400, 15, Color.Black);
         Raylib.DrawText($"Apples Eaten :", 1010, 300, 15, Color.Black);
-        
+
+     
+
+
 
         if (IsGameOver)
             Raylib.DrawText("GAMEOVER", 100, 100, 20, Color.Red);
@@ -76,7 +79,9 @@ public class SceneGame : Scene
     {
         gameOverTimer.Update(Raylib.GetFrameTime());
         if (IsGameOver) return;
-        snake.ChangeDirection(GetInputsDirection());
+        
+        if (snake.isFuzzy) { snake.ChangeDirection(GetInputsFuzzyDirection()); }
+        if (!snake.isFuzzy) { snake.ChangeDirection(GetInputsDirection()); }
         timer.Update(Raylib.GetFrameTime());
     }
 
@@ -87,8 +92,12 @@ public class SceneGame : Scene
         if (snake.IsCollidingWithApple(apple))
         {
             Console.WriteLine("Snake collided with apple at: " + apple.coordinates);
+            if (apple.typeApple == "Crazy")
+            {
+                snake.timerFuzzy += Raylib.GetFrameTime();
+            }
             apple.Respawn();
-            
+            apples++;
             snake.Grow();
             gameController.AddScore(1000);
             snake.SpeedUp();
@@ -114,15 +123,27 @@ public class SceneGame : Scene
             if (GamePause)
             {
                 timer.Pause();
-                pauses ++;
+                pauses++;
                 Raylib.DrawText("Game Paused", 200, 200, 20, Color.Yellow);
             }
-            else 
+            else
             {
                 timer.Start();
                 Raylib.DrawText("Game Reset", 200, 200, 20, Color.Green);
             }
         }
+        return Coordinates.Zero; // No direction change
+    }
+    
+     private Coordinates GetInputsFuzzyDirection()
+    {
+        var direction = Coordinates.Zero;
+        if (Raylib.IsKeyPressed(KeyboardKey.Up)) return Coordinates.Down;
+        if (Raylib.IsKeyPressed(KeyboardKey.Down)) return Coordinates.Up;
+        if (Raylib.IsKeyPressed(KeyboardKey.Left)) return Coordinates.Right;
+        if (Raylib.IsKeyPressed(KeyboardKey.Right)) return Coordinates.Left;
+       //pas de pause possible pendant la "crazy state"
+       
         return Coordinates.Zero; // No direction change
     }
 }
