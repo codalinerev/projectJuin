@@ -11,6 +11,7 @@ public class Apple
     private bool surprise = false;
 
     public string typeApple = "Normal";
+    public string lastApple = "Normal";
 
     public static string[] typesApple = { "Normal", "Crazy" };
 
@@ -38,7 +39,12 @@ public class Apple
         var pos = grid.GridToWorld(coordinates);
         pos += new Vector2(grid.cellSize * 0.5f, grid.cellSize * 0.5f);
         Raylib.DrawCircle((int)pos.X, (int)pos.Y, grid.cellSize * 0.5f, Color.Red);
-        Raylib.DrawText($"Apple type is {typeApple}", 1010, 500, 15, Color.Black);
-     }
-
+        Raylib.DrawText($"Last Apple was {lastApple}", 1010, 500, 15, Color.Black);
+        if (lastApple == "Crazy")
+        {            
+            Raylib.DrawText("Careful!!! The snake is fuzzy", 1010, 500, 20, Color.Red);
+            Raylib.DrawText("because the apple was CRAZY", 1010, 530, 15, Color.Red);
+            Raylib.DrawText("it will invert your commands!!!", 1010, 580, 15, Color.Red);
+        }
+    }
 }
