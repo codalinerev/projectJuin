@@ -1,4 +1,5 @@
 using System;
+using System.IO.Pipes;
 using Raylib_cs;
 
 namespace projectJuin;
@@ -11,6 +12,9 @@ class Snake
     Coordinates direction = Coordinates.Right;
     Coordinates nextDirection = Coordinates.Right;
     public int Length => body.Count();
+
+    public bool isFuzzy = false;
+    public float timerFuzzy = 0;
 
     public Coordinates Head
     {
@@ -30,6 +34,14 @@ class Snake
     public void Move()
     {
         direction = nextDirection;
+        if (isFuzzy)
+           if (timerFuzzy < 5)
+            {   //direction = -direction;
+                timerFuzzy += Raylib.GetFrameTime(); }
+            else { isFuzzy = false;
+                timerFuzzy = 0;
+                 }    
+
 
         body.Enqueue(body.Last() + direction);
         if (!isGrowing) body.Dequeue();
@@ -59,8 +71,10 @@ class Snake
     }
 
     public bool IsCollidingWithApple(Apple apple)
-    {           
+    {
         return Head == apple.coordinates;
+        
+        
     }
 
     public bool IsCollidingWithItself()
