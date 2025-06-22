@@ -26,8 +26,8 @@ class Program
             _scenesManager.Draw();
 
             // Draw text
-            Raylib.DrawText("roblox is fun!", 350, 280, 20, Color.Red);
-            Raylib.DrawText("X", 26, 3, 20, Color.Blue);
+            //Raylib.DrawText("roblox is fun!", 350, 280, 20, Color.Red);
+            //old debug Raylib.DrawText("X", 26, 3, 20, Color.Blue);
 
             // End drawing
             Raylib.EndDrawing();
