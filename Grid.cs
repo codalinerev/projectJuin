@@ -44,10 +44,9 @@ public class Grid
         }
     }
 
-    public void DrawMini()
+    public void DrawMini() 
+    // c'était un test , pas utilisé dans ce jeu
     {
-       //Vector2 posToMini = posMini / 10;
-
         for (int col = 0; col < columns; col++)
         {
             for (int row = 0; row < rows; row++)
