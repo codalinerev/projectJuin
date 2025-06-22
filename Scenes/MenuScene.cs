@@ -11,7 +11,8 @@ public class MenuScene : Scene
     }
     public override void Draw()
     {
-        Raylib.DrawText("Draw scene menu", 10, 10, 20, Color.Black);
+        Raylib.DrawText("Snake", 300, 300, 60, Color.Green);
+        Raylib.DrawText("Press enter to start", 500, 300, 20, Color.Black);
     }
     
     public override void Unload()
@@ -25,7 +26,7 @@ public class MenuScene : Scene
         {
             var sm = Services.Get<IScenesManager>();
             sm.Load<SceneGame>();
-            Raylib.DrawText("Load Scene Game", 200, 200, 20, Color.Gold);
+            Raylib.DrawText("Scene Game", 200, 200, 20, Color.Gold);
         }
     } 
 }
