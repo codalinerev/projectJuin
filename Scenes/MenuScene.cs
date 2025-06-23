@@ -14,10 +14,15 @@ public class MenuScene : Scene
     }
     public override void Draw()
     {
-        Raylib.DrawText("Snake", 300, 300, 60, Color.Green);
-        Raylib.DrawText("Press enter to start", 500, 300, 20, Color.Black);
-        Raylib.DrawTexture(appleNormal, 680, 400, Color.White);
-        Raylib.DrawTexture(appleCrazy, 600, 400, Color.White);
+        Raylib.DrawText("Snake", 280, 300, 250, Color.Green);
+        Raylib.DrawText("Press enter to start", 300, 100, 25, Color.Black);
+        Raylib.DrawTexture(appleNormal, 380, 370, Color.White);
+        Raylib.DrawTexture(appleCrazy, 300, 370, Color.White);
+        Raylib.DrawText("Move snake with arrows", 300, 180, 25, Color.DarkGray);
+        Raylib.DrawText("press space for pause or restart", 400, 560, 25, Color.DarkBlue);
+        Raylib.DrawText("! Crazy apples make the snake fuzzy", 320, 620, 35, Color.Lime);
+        Raylib.DrawText("It will misunderstand your commands", 320, 670, 30, Color.Red);
+        Raylib.DrawText("and do the opposite (for example, left for right)", 320, 720, 35, Color.Pink);
     }
     
     public override void Unload()
