@@ -10,8 +10,8 @@ The score counts the eaten apples.
 
 While the score goes up, snake's speed goes slowly up, too.
 
-You may take a pause in the game, press "space"; press "space" again  to continue.
+You may take a pause in the game by pressing "space"; press "space" again  to continue.
 
-Press "enter" to pass to go back to Start Menu.
+Press "enter" to go back to Start Menu.
 
 Have fun!
