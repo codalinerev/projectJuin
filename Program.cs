@@ -12,7 +12,7 @@ class Program
 
         Raylib.SetTargetFPS(60);
 
-        _scenesManager.Load<SceneGame>();
+        _scenesManager.Load<MenuScene>();
 
         // Main game loop
         while (!Raylib.WindowShouldClose())
