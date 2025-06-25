@@ -7,7 +7,7 @@ public interface IGameController
     int GetPauseCount();
     int GetSnakeLength();
     int GetApplesEaten();
-    int GetShoots();
+    //int GetShoots();
     int GetPauses();
 }
 
@@ -15,7 +15,7 @@ class GameController : IGameController
 {
     private int currenteScore = 0;
     private int pauseCount { get; set; } = 0;
-    public int shootCount { get; private set; } = 0;
+    //public int shootCount { get; private set; } = 0;
     public int appleCount { get; private set; } = 0;
     public Snake? Snake { get; private set; }
     public Apple? Apple { get; private set; }
@@ -31,8 +31,7 @@ class GameController : IGameController
 
     public int GetPauseCount()
     {
-        // Assuming you have a way to track pauses, this is a placeholder
-        return pauseCount; // Replace with actual pause count logic
+        return pauseCount;
     }
 
     private void AddPauseCount()
@@ -47,7 +46,7 @@ class GameController : IGameController
     }
     public int GetApplesEaten() => appleCount;
 
-    public int GetShoots() => shootCount;
+    //public int GetShoots() => shootCount;
     public int GetPauses() => pauseCount;
 
 
