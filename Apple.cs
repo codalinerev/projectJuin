@@ -3,6 +3,7 @@ using System;
 using System.Formats.Asn1;
 using System.Numerics;
 using Raylib_cs;
+using static Snake;
 
 
 public class Apple
@@ -14,10 +15,13 @@ public class Apple
     Texture2D appleCrazy = Raylib.LoadTexture("assets/apple_fuzzy.png");
     Texture2D texApple;
 
-    public string typeApple = "Normal";
-    public string lastApple = "Normal";
+    //public string typeApple = "Normal";
+    //public string lastApple = "Normal";
 
-    public static string[] typesApple = { "Normal", "Crazy" };
+
+    public enum appleType { Normal, Crazy };
+    public appleType typeApple = appleType.Normal;
+    
 
     public Apple(Grid grid)
     {
@@ -25,11 +29,12 @@ public class Apple
         coordinates = Coordinates.Random(grid.columns, grid.rows);
     }
 
-    public string RandomType()
+    public appleType RandomType()
     {
-        Random randomT = new Random();
-        int i = randomT.Next(0,typesApple.Length);
-        return typesApple[i];  // for now, only two types of apples, Normal and Crazy     
+        Random randomIndex = new Random(2);
+        int i = randomIndex.Next();
+        if (i == 0) return appleType.Normal;
+        return appleType.Crazy; // for now, only two types of apples, Normal and Crazy     
     } 
 
     public void Respawn()
@@ -41,19 +46,10 @@ public class Apple
     public void Draw()
     {
         var pos = grid.GridToWorld(coordinates);
-        //for debug  Raylib.DrawTexture(appleNormal, 300, 300, Color.White);
-        //for debug Raylib.DrawTexture(appleCrazy, 400, 300, Color.White);
-        //pos += new Vector2(grid.cellSize * 0.5f, grid.cellSize * 0.5f);
-        //Raylib.DrawCircle((int)pos.X, (int)pos.Y, grid.cellSize * 0.5f, Color.Red);
+       
         texApple = appleNormal;
-        if (typeApple == "Crazy") texApple = appleCrazy;
-        Raylib.DrawTexture(texApple, (int)pos.X, (int)pos.Y, Color.White);
-        Raylib.DrawText($"Last Apple was {lastApple}", 1010, 500, 15, Color.Black);
-        if (lastApple == "Crazy")
-        {            
-            Raylib.DrawText("Careful!!! The snake is fuzzy", 1010, 500, 20, Color.Red);
-            Raylib.DrawText("because the apple was CRAZY", 1010, 530, 15, Color.Red);
-            Raylib.DrawText("it will invert your commands!!!", 1010, 580, 15, Color.Red);
-        }
+        if (typeApple == appleType.Crazy) texApple = appleCrazy;
+        Raylib.DrawTexture(texApple, (int)pos.X, (int)pos.Y, Color.White);      
+        
     }
 }
