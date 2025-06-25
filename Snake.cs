@@ -33,16 +33,7 @@ class Snake
 
     public void Move()
     {
-        direction = nextDirection;
-        if (isFuzzy)
-           if (timerFuzzy < 5)
-            {   //direction = -direction;
-                timerFuzzy += Raylib.GetFrameTime(); }
-            else { isFuzzy = false;
-                timerFuzzy = 0;
-                 }    
-
-
+        direction = nextDirection;      
         body.Enqueue(body.Last() + direction);
         if (!isGrowing) body.Dequeue();
         else isGrowing = false;
