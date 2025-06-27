@@ -11,8 +11,9 @@ public class Apple
     public Coordinates coordinates { get; private set; }
     private Grid grid;
     private bool surprise = false;
-    Texture2D appleNormal = Raylib.LoadTexture("assets/apple_basic.png");
-    Texture2D appleCrazy = Raylib.LoadTexture("assets/apple_fuzzy.png");
+    //public static AssetsManager _assetsManager;
+    Texture2D appleNormal = /*_assetsManager.getTextureFromString("normal");//*/Raylib.LoadTexture("assets/apple_basic.png");
+    Texture2D appleCrazy = /*_assetsManager.getTextureFromString("fuzzy");//*/Raylib.LoadTexture("assets/apple_fuzzy.png");
     Texture2D texApple;
 
     //public string typeApple = "Normal";
