@@ -44,8 +44,6 @@ public class SceneGame : Scene
     public override void Load()
     {
         grid.position = new Vector2(100, 100);
-      
-
     }
 
     public override void Draw()
@@ -97,6 +95,7 @@ public class SceneGame : Scene
             else snake.isFuzzy = false;
                  
             apple.Respawn();
+            Console.WriteLine($"<string>Apple.appleType");
             apples++;
             snake.Grow();
             gameController.AddScore(1000);

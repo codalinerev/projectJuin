@@ -14,11 +14,10 @@ public class AssetsManager
 
     public Texture2D getTextureFromString(string appleName)
     {
-        if (appleName == "fuzzy")
-            return assetsList[1];
-        else if (appleName == "normal")
+        if (appleName == "normal")
             return assetsList[0];
-        return assetsList[0];
+        else 
+            return assetsList[1];
     }
 
     /*public Draw()
