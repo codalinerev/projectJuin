@@ -6,6 +6,7 @@ class Program
 {
     static private ScenesManager _scenesManager = new();
     static private GameController _gameController = new();
+    //static private AssetsManager _assetsManager = new();
     static void Main()
     {
         Raylib.InitWindow(1200, 800, "Hello, Raylib!");
