@@ -6,7 +6,7 @@ class Program
 {
     static private ScenesManager _scenesManager = new();
     static private GameController _gameController = new();
-    //static private AssetsManager _assetsManager = new();
+    static private AssetsManager _assetsManager = new();
     static void Main()
     {
         Raylib.InitWindow(1200, 800, "Hello, Raylib!");
@@ -18,19 +18,12 @@ class Program
         // Main game loop
         while (!Raylib.WindowShouldClose())
         {
-            // Update logic here
             _scenesManager.Update();
-
-            // Begin drawing
+           
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.LightGray);
             _scenesManager.Draw();
-
-            // Draw text
-            //Raylib.DrawText("roblox is fun!", 350, 280, 20, Color.Red);
-            //old debug Raylib.DrawText("X", 26, 3, 20, Color.Blue);
-
-            // End drawing
+ 
             Raylib.EndDrawing();
         }
 

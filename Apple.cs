@@ -10,17 +10,15 @@ public class Apple
 {
     public Coordinates coordinates { get; private set; }
     private Grid grid;
-    private bool surprise = false;
-    //public static AssetsManager _assetsManager;
-    Texture2D appleNormal = /*_assetsManager.getTextureFromString("normal");//*/Raylib.LoadTexture("assets/apple_basic.png");
-    Texture2D appleCrazy = /*_assetsManager.getTextureFromString("fuzzy");//*/Raylib.LoadTexture("assets/apple_fuzzy.png");
-    Texture2D texApple;
 
-    //public string typeApple = "Normal";
-    //public string lastApple = "Normal";
+    static AssetsManager _assetsManager = Services.Get<AssetsManager>();
+
+    Texture2D appleNormal = _assetsManager.getTextureFromString("normal");
+    Texture2D appleCrazy = _assetsManager.getTextureFromString("fuzzy");
+    Texture2D imageApple;
 
 
-    public enum appleType { Normal, Crazy };
+    public enum appleType { Normal, Fuzzy };
     public appleType typeApple = appleType.Normal;
     
 
@@ -35,7 +33,7 @@ public class Apple
         Random randomIndex = new Random(2);
         int i = randomIndex.Next();
         if (i == 0) return appleType.Normal;
-        return appleType.Crazy; // for now, only two types of apples, Normal and Crazy     
+        return appleType.Fuzzy; // for now, only two types of apples, Normal and Crazy     
     } 
 
     public void Respawn()
@@ -48,9 +46,9 @@ public class Apple
     {
         var pos = grid.GridToWorld(coordinates);
        
-        texApple = appleNormal;
-        if (typeApple == appleType.Crazy) texApple = appleCrazy;
-        Raylib.DrawTexture(texApple, (int)pos.X, (int)pos.Y, Color.White);      
+        imageApple = appleNormal;
+        if (typeApple == appleType.Fuzzy) imageApple = appleCrazy;
+        Raylib.DrawTexture(imageApple, (int)pos.X, (int)pos.Y, Color.White);      
         
     }
 }

@@ -12,6 +12,8 @@ public class SceneGame : Scene
 
     ScoreGui score = new ScoreGui();
     static IGameController gameController = Services.Get<IGameController>();
+    static AssetsManager _assetsManager = Services.Get<AssetsManager>();
+
     int apples = gameController.GetApplesEaten();
     int length = gameController.GetSnakeLength();
     //int shoots = gameController.GetShoots(); // idée pas encore implementée
@@ -60,7 +62,7 @@ public class SceneGame : Scene
             Raylib.DrawText("!!!!!", 1030, 500, 40, Color.Red);
             Raylib.DrawText("FUZZY", 1010, 540, 30, Color.Red);
             Raylib.DrawText("SNAKE", 1020, 570, 30, Color.Red);
-            Raylib.DrawText("apple was CRAZY", 1010, 600, 15, Color.Red);
+            Raylib.DrawText("apple was Fuzzy", 1010, 600, 15, Color.Red);
             Raylib.DrawText("invert commands!!!", 1010, 630, 15, Color.Red);
         }
 
@@ -90,7 +92,7 @@ public class SceneGame : Scene
         if (snake.IsCollidingWithApple(apple))
         {
             Console.WriteLine("Snake collided with apple at: " + apple.coordinates);
-            if (apple.typeApple == Apple.appleType.Crazy)
+            if (apple.typeApple == Apple.appleType.Fuzzy)
                 snake.isFuzzy = true;
             else snake.isFuzzy = false;
                  
