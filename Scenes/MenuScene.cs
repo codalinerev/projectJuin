@@ -5,8 +5,10 @@ namespace projectJuin;
 
 public class MenuScene : Scene
 {
-    Texture2D appleNormal = Raylib.LoadTexture("assets/apple_basic.png");
-    Texture2D appleCrazy = Raylib.LoadTexture("assets/apple_fuzzy.png");
+    static private AssetsManager _assetsManager = new();
+    Texture2D appleNormal = _assetsManager.getTextureFromString("normal");
+    Texture2D appleCrazy = _assetsManager.getTextureFromString("crazy");
+
     public override void Load()
     {
         Console.WriteLine("Load scene menu");
